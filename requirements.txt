@@ -1,0 +1,8 @@
+coqui-tts
+torch
+torchaudio
+librosa
+soundfile
+pydub
+tqdm
+numpy
