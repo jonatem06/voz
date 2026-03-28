@@ -32,8 +32,13 @@ def main():
     if input_type == 'f':
         txt_path = input("Ruta del archivo .txt: ").strip()
         try:
-            with open(txt_path, 'r', encoding='utf-8') as f:
-                text = f.read()
+            # Try UTF-8 first, fallback to latin-1 for Windows-style files
+            try:
+                with open(txt_path, 'r', encoding='utf-8') as f:
+                    text = f.read()
+            except UnicodeDecodeError:
+                with open(txt_path, 'r', encoding='latin-1') as f:
+                    text = f.read()
         except FileNotFoundError:
             print(f"Error: El archivo {txt_path} no fue encontrado.")
             return
